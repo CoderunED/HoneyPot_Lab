@@ -1,0 +1,48 @@
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# ===========================
+# Sensitive / Security
+# ===========================
+*.pem
+*.key
+*.ppk
+.env
+.env.*
+secrets.json
+aws_credentials*
+config.json
+
+# ===========================
+# Raw Honeypot Logs (sensitive - never commit real logs)
+# ===========================
+analysis/raw_logs/
+logs/
+*.log
+cowrie.json
+cowrie*.log
+
+# ===========================
+# IDE & OS
+# ===========================
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+*.swp
+
+# ===========================
+# Reports with sensitive data
+# ===========================
+reports/raw/

@@ -122,10 +122,10 @@ Every attack session logged includes:
 ## 🚧 Build Progress
 
 - [x] Day 1 — Repo structure + README + architecture diagram
-- [ ] Day 2 — AWS EC2 setup + Security Groups configured
-- [ ] Day 3 — Cowrie installed and running
-- [ ] Day 4 — Verified capturing live traffic
-- [ ] Day 5 — `log_parser.py` complete
+- [x] Day 2 — AWS EC2 setup + Security Groups configured
+- [x] Day 3 — Cowrie installed and running
+- [x] Day 4 — Verified capturing live traffic
+- [x] Day 5 — `log_parser.py` complete
 - [ ] Day 6 — Attacker pattern analysis script
 - [ ] Day 7 — GeoIP lookup script
 - [ ] Day 8 — Auto report generator

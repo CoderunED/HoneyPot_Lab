@@ -46,3 +46,16 @@ Thumbs.db
 # Reports with sensitive data
 # ===========================
 reports/raw/
+# ===========================
+# Cowrie Runtime Files
+# ===========================
+twistd.log
+twistd.pid
+var/
+etc/cowrie.cfg
+
+# ===========================
+# OS
+# ===========================
+*.tmp
+*.bak

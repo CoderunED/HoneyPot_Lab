@@ -59,3 +59,7 @@ etc/cowrie.cfg
 # ===========================
 *.tmp
 *.bak
+cowrie-env/
+filebeat-8.17.3-linux-x86_64.tar.gz
+filebeat-8.17.3-linux-x86_64/
+src/

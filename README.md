@@ -30,7 +30,7 @@ A **cloud-deployed SSH/Telnet honeypot** running on AWS EC2 that captures real-w
 - Ship logs to Elastic SIEM via Filebeat for enterprise-grade threat detection
 - Identify attacker patterns — botnet fingerprinting, credential stuffing, origins
 - Visualize live attack map with GeoIP enrichment in Kibana
-- Forward logs to AWS CloudWatch + QuickSight for cloud-native geo visualization
+- Forward logs to AWS CloudWatch + Logs Insights for cloud-native attack queries
 - Generate automated threat intelligence reports from raw logs
 - Document findings as a real-world security research case study
 
@@ -68,7 +68,7 @@ A **cloud-deployed SSH/Telnet honeypot** running on AWS EC2 that captures real-w
 │  └───────────┬──────────┘           │                       │
 │              │              ┌───────▼──────────────────────┐ │
 │              │              │   AWS CloudWatch Logs        │ │
-│              │              │   + QuickSight Geo Map       │ │
+│              │              │   + Logs Insights Queries    │ │
 │              │              └──────────────────────────────┘ │
 └──────────────┼──────────────────────────────────────────────┘
                │
@@ -119,8 +119,8 @@ HoneyPot_Lab/
 | SIEM | Elastic Cloud (Elasticsearch + Kibana) |
 | GeoIP Enrichment | Elastic Ingest Pipeline (MaxMind GeoIP) |
 | Attack Map | Kibana Maps (live, real-time) |
-| Cloud Logging | AWS CloudWatch Logs (coming) |
-| Cloud Visualization | AWS QuickSight Geo Map (coming) |
+| Cloud Logging | AWS CloudWatch Logs |
+| Cloud Query | AWS CloudWatch Logs Insights |
 | Log Analysis | Python 3 (custom scripts) |
 | GeoIP Lookup | ip-api.com |
 | Admin Access | AWS Session Manager (no SSH keys) |
@@ -172,8 +172,8 @@ Every attack session logged includes:
 - [x] Day 7 — `geoip_lookup.py` — 24 IPs mapped across 9 countries
 - [x] Day 7.5 — Filebeat → Elastic SIEM pipeline live
 - [x] Day 7.5 — Kibana live attack map with GeoIP enrichment
-- [ ] Day 8 — AWS CloudWatch agent + log forwarding
-- [ ] Day 9 — AWS QuickSight geo map
+- [x] Day 8 — AWS CloudWatch agent + log forwarding
+- [x] Day 9 — AWS CloudWatch Logs Insights (attack query dashboard)
 - [ ] Day 10 — Auto report generator
 - [ ] Day 11 — Real findings documented
 - [ ] Day 12 — Architecture diagram finalized

@@ -6,8 +6,9 @@
 
 ![AWS](https://img.shields.io/badge/AWS-EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Elastic](https://img.shields.io/badge/Elastic-SIEM-005571?style=for-the-badge&logo=elastic&logoColor=white)
+![Kibana](https://img.shields.io/badge/Kibana-Maps-E8478B?style=for-the-badge&logo=kibana&logoColor=white)
 ![Cowrie](https://img.shields.io/badge/Cowrie-Honeypot-FF6B6B?style=for-the-badge)
-![Linux](https://img.shields.io/badge/Linux-Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-00C176?style=for-the-badge)
 
 </div>
@@ -16,7 +17,7 @@
 
 ## 🍯 What Is This?
 
-A **cloud-deployed SSH/Telnet honeypot** running on AWS EC2 that captures real-world attack traffic from the internet. Using Cowrie — an industry-standard medium-interaction honeypot — this lab logs every login attempt, command executed, and file downloaded by attackers, then analyzes the data to extract threat intelligence patterns.
+A **cloud-deployed SSH/Telnet honeypot** running on AWS EC2 that captures real-world attack traffic from the internet. Using Cowrie — an industry-standard medium-interaction honeypot — this lab logs every login attempt, command executed, and file downloaded by attackers. Logs are shipped in real-time via Filebeat to Elastic SIEM for threat detection, and visualized on a live Kibana attack map showing attacker origins across 9 countries.
 
 > *"The best way to understand how attackers think is to let them think they've won."*
 
@@ -25,8 +26,11 @@ A **cloud-deployed SSH/Telnet honeypot** running on AWS EC2 that captures real-w
 ## 🎯 Objectives
 
 - Deploy a production-grade honeypot on AWS EC2
-- Capture and analyze real SSH brute-force attempts
-- Identify attacker patterns — credential stuffing, command sequences, origins
+- Capture and analyze real SSH brute-force attempts in real time
+- Ship logs to Elastic SIEM via Filebeat for enterprise-grade threat detection
+- Identify attacker patterns — botnet fingerprinting, credential stuffing, origins
+- Visualize live attack map with GeoIP enrichment in Kibana
+- Forward logs to AWS CloudWatch + QuickSight for cloud-native geo visualization
 - Generate automated threat intelligence reports from raw logs
 - Document findings as a real-world security research case study
 
@@ -35,36 +39,46 @@ A **cloud-deployed SSH/Telnet honeypot** running on AWS EC2 that captures real-w
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                    Internet                         │
-│         (Real attackers scanning the web)           │
-└──────────────────────┬──────────────────────────────┘
-                       │ SSH/Telnet attempts
-                       ▼
-┌─────────────────────────────────────────────────────┐
-│              AWS EC2 (t2.micro)                     │
-│                                                     │
-│  ┌─────────────────────────────────────────────┐   │
-│  │           Cowrie Honeypot                   │   │
-│  │  - Listens on port 22/23                    │   │
-│  │  - Emulates vulnerable SSH server           │   │
-│  │  - Logs all sessions to JSON                │   │
-│  └──────────────────┬──────────────────────────┘   │
-│                     │                               │
-│  ┌──────────────────▼──────────────────────────┐   │
-│  │         Python Analysis Pipeline            │   │
-│  │  - log_parser.py                            │   │
-│  │  - geoip_lookup.py                          │   │
-│  │  - report_generator.py                      │   │
-│  └──────────────────┬──────────────────────────┘   │
-│                     │                               │
-│  ┌──────────────────▼──────────────────────────┐   │
-│  │         Reports & Visualizations            │   │
-│  │  - Attack summary (Markdown/PDF)            │   │
-│  │  - Charts (matplotlib)                      │   │
-│  │  - GeoIP map of attacker origins            │   │
-│  └─────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                        Internet                             │
+│            (Real attackers scanning the web)                │
+└──────────────────────────┬──────────────────────────────────┘
+                           │ SSH (port 22) / Telnet (port 23)
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  AWS EC2 (t2.micro)                         │
+│                                                             │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │              iptables (port redirect)                 │  │
+│  │         port 22 → 2222  |  port 23 → 2223            │  │
+│  └────────────────────────┬──────────────────────────────┘  │
+│                           │                                 │
+│  ┌────────────────────────▼──────────────────────────────┐  │
+│  │                 Cowrie Honeypot                       │  │
+│  │    - Emulates vulnerable SSH/Telnet server            │  │
+│  │    - Logs sessions to cowrie.json                     │  │
+│  │    - Captures credentials, commands, downloads        │  │
+│  └───────────┬───────────────────────┬───────────────────┘  │
+│              │                       │                      │
+│  ┌───────────▼──────────┐  ┌────────▼────────────────────┐  │
+│  │  Python Analysis     │  │     Filebeat 8.17           │  │
+│  │  - log_parser.py     │  │  Ships logs to Elastic SIEM │  │
+│  │  - attack_analyzer.py│  └────────┬────────────────────┘  │
+│  │  - geoip_lookup.py   │           │                       │
+│  └───────────┬──────────┘           │                       │
+│              │              ┌───────▼──────────────────────┐ │
+│              │              │   AWS CloudWatch Logs        │ │
+│              │              │   + QuickSight Geo Map       │ │
+│              │              └──────────────────────────────┘ │
+└──────────────┼──────────────────────────────────────────────┘
+               │
+    ┌──────────▼────────────────────────────┐
+    │         Elastic Cloud (SIEM)          │
+    │  - Kibana Live Attack Map             │
+    │  - GeoIP enrichment pipeline         │
+    │  - Threat detection dashboards       │
+    │  - Botnet fingerprint analysis       │
+    └───────────────────────────────────────┘
 ```
 
 ---
@@ -73,21 +87,22 @@ A **cloud-deployed SSH/Telnet honeypot** running on AWS EC2 that captures real-w
 
 ```
 HoneyPot_Lab/
-├── README.md                  # This file
+├── README.md                    # This file
 ├── setup/
-│   ├── cowrie_setup.sh        # Automated Cowrie install script
-│   └── security_groups.md    # AWS Security Group configuration
+│   ├── cowrie_setup.sh          # Automated Cowrie install script
+│   └── security_groups.md      # AWS Security Group configuration
 ├── scripts/
-│   ├── log_parser.py          # Parse Cowrie JSON logs
-│   ├── geoip_lookup.py        # Map attacker IPs to countries
-│   └── report_generator.py   # Auto-generate attack summary
+│   ├── log_parser.py            # Parse Cowrie JSON logs → attack summary
+│   ├── attack_analyzer.py       # Botnet fingerprinting + pattern analysis
+│   ├── geoip_lookup.py          # Map attacker IPs to countries via ip-api.com
+│   └── report_generator.py      # Auto-generate threat intel report (coming)
 ├── analysis/
-│   ├── findings.md            # Real findings from honeypot
-│   └── sample_logs/           # Anonymized log samples
+│   ├── findings.md              # Real findings from honeypot
+│   └── sample_logs/             # Anonymized log samples
 ├── diagrams/
-│   └── architecture.png       # AWS architecture diagram
+│   └── architecture.png         # AWS architecture diagram
 └── reports/
-    └── attack_summary.md      # Generated threat intel report
+    └── attack_summary.md        # Generated threat intel report
 ```
 
 ---
@@ -97,12 +112,18 @@ HoneyPot_Lab/
 | Component | Technology |
 |---|---|
 | Cloud Platform | AWS EC2 (t2.micro, Free Tier) |
-| OS | Ubuntu 22.04 LTS |
-| Honeypot | Cowrie v2.x |
-| Log Analysis | Python 3, pandas |
-| GeoIP Lookup | ip-api.com / GeoIP2 |
-| Visualization | matplotlib, seaborn |
-| Reporting | Markdown, Python |
+| OS | Amazon Linux 2023 |
+| Honeypot | Cowrie v2.9.14 |
+| Python | 3.11 |
+| Log Shipper | Filebeat 8.17 |
+| SIEM | Elastic Cloud (Elasticsearch + Kibana) |
+| GeoIP Enrichment | Elastic Ingest Pipeline (MaxMind GeoIP) |
+| Attack Map | Kibana Maps (live, real-time) |
+| Cloud Logging | AWS CloudWatch Logs (coming) |
+| Cloud Visualization | AWS QuickSight Geo Map (coming) |
+| Log Analysis | Python 3 (custom scripts) |
+| GeoIP Lookup | ip-api.com |
+| Admin Access | AWS Session Manager (no SSH keys) |
 
 ---
 
@@ -119,6 +140,27 @@ Every attack session logged includes:
 
 ---
 
+## 📈 Real Attack Data Captured
+
+> Honeypot has been live since March 13, 2026
+
+| Metric | Value |
+|---|---|
+| Total connection attempts | 102 |
+| Unique attacker IPs | 24 |
+| Countries represented | 9 |
+| Successful logins | 26 |
+| Unique botnets (HASSH) | 11 |
+| Peak attack hour (UTC) | 18:00 (17 connections) |
+| Top attacker org | Telekomunikasi Indonesia (40 connections) |
+| Most used credential | root / password |
+
+**Top attacking countries:** 🇮🇩 Indonesia (40) · 🇺🇸 United States (26) · 🇸🇬 Singapore (9) · 🇦🇺 Australia (8) · 🇮🇳 India (8)
+
+**Key finding:** 4 DigitalOcean IPs sharing the same HASSH fingerprint (`SSH-2.0-Go`) across Singapore, India, Australia and US — coordinated botnet campaign.
+
+---
+
 ## 🚧 Build Progress
 
 - [x] Day 1 — Repo structure + README + architecture diagram
@@ -126,15 +168,18 @@ Every attack session logged includes:
 - [x] Day 3 — Cowrie installed and running
 - [x] Day 4 — Verified capturing live traffic
 - [x] Day 5 — `log_parser.py` complete
-- [ ] Day 6 — Attacker pattern analysis script
-- [ ] Day 7 — GeoIP lookup script
-- [ ] Day 8 — Auto report generator
-- [ ] Day 9 — Visualizations (charts + maps)
-- [ ] Day 10 — Real findings documented
-- [ ] Day 11 — Architecture diagram finalized
-- [ ] Day 12 — Full README polish
-- [ ] Day 13 — HackTrace article drafted
-- [ ] Day 14 — v1.0 release
+- [x] Day 6 — `attack_analyzer.py` — botnet fingerprinting + pattern analysis
+- [x] Day 7 — `geoip_lookup.py` — 24 IPs mapped across 9 countries
+- [x] Day 7.5 — Filebeat → Elastic SIEM pipeline live
+- [x] Day 7.5 — Kibana live attack map with GeoIP enrichment
+- [ ] Day 8 — AWS CloudWatch agent + log forwarding
+- [ ] Day 9 — AWS QuickSight geo map
+- [ ] Day 10 — Auto report generator
+- [ ] Day 11 — Real findings documented
+- [ ] Day 12 — Architecture diagram finalized
+- [ ] Day 13 — Full README polish
+- [ ] Day 14 — HackTrace article drafted
+- [ ] Day 15 — v1.0 release
 
 ---
 

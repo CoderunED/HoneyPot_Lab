@@ -1,10 +1,13 @@
 <div align="center">
-
+<br>
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=FF6B6B&center=true&vCenter=true&width=700&lines=HoneyPot+Lab;Cloud-Deployed+SSH+Honeypot;Real+Attackers.+Real+Data.+Real+Insights." alt="Typing SVG" />
 
 <br/>
+</div>
 
+<div align="center">
 
+<br>
 [![My Skills](https://skillicons.dev/icons?i=aws,python,linux,bash,elasticsearch,kibana&theme=dark)](https://skillicons.dev)
 
 <br/>

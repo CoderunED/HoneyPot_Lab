@@ -190,8 +190,6 @@ Every attack session logged includes:
 - [x] Day 11 — Real findings documented (7 key discoveries + MITRE ATT&CK mapping)
 - [x] Day 12 — Attack map screenshots added to repo
 - [x] Day 13 — Full README polish
-- [ ] Day 14 — HackTrace article drafted
-- [ ] Day 15 — v1.0 release
 
 ---
 

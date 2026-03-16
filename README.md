@@ -4,13 +4,22 @@
 
 <br/>
 
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=FF6B6B&center=true&vCenter=true&width=700&lines=HoneyPot+Lab;Cloud-Deployed+SSH+Honeypot;Real+Attackers.+Real+Data.+Real+Insights." alt="Typing SVG" />
+
+<br/><br/>
 
 [![My Skills](https://skillicons.dev/icons?i=aws,python,linux,bash,elasticsearch,kibana&theme=dark)](https://skillicons.dev)
 
 <br/>
 
+![Status](https://img.shields.io/badge/Status-Active-00C176?style=for-the-badge)
+![Cowrie](https://img.shields.io/badge/Cowrie-Honeypot-FF6B6B?style=for-the-badge)
+![Filebeat](https://img.shields.io/badge/Filebeat-8.17-005571?style=for-the-badge&logo=elastic&logoColor=white)
+![CloudWatch](https://img.shields.io/badge/AWS-CloudWatch-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 
 </div>
+
+---
 
 ## 🍯 What Is This?
 

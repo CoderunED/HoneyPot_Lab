@@ -7,7 +7,6 @@
 
 <div align="center">
 
-<br>
 
 [![My Skills](https://skillicons.dev/icons?i=aws,python,linux,bash,elasticsearch,kibana&theme=dark)](https://skillicons.dev)
 

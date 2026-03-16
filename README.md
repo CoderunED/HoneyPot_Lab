@@ -205,9 +205,11 @@ This honeypot is deployed on infrastructure I own and control. All captured data
 
 **Ervin D'Souza** — MS Cybersecurity @ CCNY | Aspiring Cloud Security Engineer
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ervindsouzaa)
-[![Medium](https://img.shields.io/badge/Medium-HackTrace-000000?style=flat-square&logo=medium&logoColor=white)](https://medium.com/@ervindsouza08)
-[![GitHub](https://img.shields.io/badge/GitHub-CoderunED-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/CoderunED)
+[<img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/main/large/filled/linkedin.svg" width="40" height="40">](https://www.linkedin.com/in/ervindsouzaa)
+[<img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/main/large/filled/github.svg" width="40" height="40">](https://github.com/CoderunED)
+[<img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/main/large/filled/medium.svg" width="40" height="40">](https://medium.com/@ervindsouza08)
+[<img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/main/large/filled/youtube.svg" width="40" height="40">](https://www.youtube.com/@ervindsouza11)
+
 
 ---
 

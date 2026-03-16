@@ -4,12 +4,18 @@
 
 <br/>
 
-![AWS](https://img.shields.io/badge/AWS-EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Elastic](https://img.shields.io/badge/Elastic-SIEM-005571?style=for-the-badge&logo=elastic&logoColor=white)
-![Kibana](https://img.shields.io/badge/Kibana-Maps-E8478B?style=for-the-badge&logo=kibana&logoColor=white)
-![Cowrie](https://img.shields.io/badge/Cowrie-Honeypot-FF6B6B?style=for-the-badge)
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=FF6B6B&center=true&vCenter=true&width=700&lines=HoneyPot+Lab;Cloud-Deployed+SSH+Honeypot;Real+Attackers.+Real+Data.+Real+Insights." alt="Typing SVG" />
+
+<br/>
+
+[![My Skills](https://skillicons.dev/icons?i=aws,python,linux,bash,elasticsearch,kibana&theme=dark)](https://skillicons.dev)
+
+<br/>
+
 ![Status](https://img.shields.io/badge/Status-Active-00C176?style=for-the-badge)
+![Cowrie](https://img.shields.io/badge/Cowrie-Honeypot-FF6B6B?style=for-the-badge)
+![Filebeat](https://img.shields.io/badge/Filebeat-8.17-005571?style=for-the-badge&logo=elastic&logoColor=white)
+![CloudWatch](https://img.shields.io/badge/AWS-CloudWatch-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 
 </div>
 
@@ -95,9 +101,9 @@ HoneyPot_Lab/
 │   ├── log_parser.py            # Parse Cowrie JSON logs → attack summary
 │   ├── attack_analyzer.py       # Botnet fingerprinting + pattern analysis
 │   ├── geoip_lookup.py          # Map attacker IPs to countries via ip-api.com
-│   └── report_generator.py      # Auto-generate threat intel report (coming)
+│   └── report_generator.py      # Auto-generate threat intel report
 ├── analysis/
-│   ├── findings.md              # Real findings from honeypot
+│   ├── findings.md              # [Real threat intel findings →](analysis/findings.md)
 │   └── sample_logs/             # Anonymized log samples
 ├── diagrams/
 │   ├── architecture.png              # AWS architecture diagram
@@ -161,6 +167,8 @@ Every attack session logged includes:
 
 **Key finding:** 4 DigitalOcean IPs sharing the same HASSH fingerprint (`SSH-2.0-Go`) across Singapore, India, Australia and US — coordinated botnet campaign.
 
+📄 **[Read full threat intelligence findings →](analysis/findings.md)**
+
 ---
 
 ## 🗺️ Live Attack Map (Kibana)
@@ -186,10 +194,10 @@ Every attack session logged includes:
 - [x] Day 7.5 — Kibana live attack map with GeoIP enrichment
 - [x] Day 8 — AWS CloudWatch agent + log forwarding
 - [x] Day 9 — AWS CloudWatch Logs Insights (attack query dashboard)
-- [ ] Day 10 — Auto report generator
-- [ ] Day 11 — Real findings documented
+- [x] Day 10 — `report_generator.py` — automated threat intel report
+- [x] Day 11 — Real findings documented (7 key discoveries + MITRE ATT&CK mapping)
 - [x] Day 12 — Attack map screenshots added to repo
-- [ ] Day 13 — Full README polish
+- [x] Day 13 — Full README polish
 - [ ] Day 14 — HackTrace article drafted
 - [ ] Day 15 — v1.0 release
 

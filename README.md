@@ -100,7 +100,9 @@ HoneyPot_Lab/
 │   ├── findings.md              # Real findings from honeypot
 │   └── sample_logs/             # Anonymized log samples
 ├── diagrams/
-│   └── architecture.png         # AWS architecture diagram
+│   ├── architecture.png              # AWS architecture diagram
+│   ├── kibana-attack-map-asia.png    # Live Kibana attack map - Asia Pacific
+│   └── kibana-attack-map-americas.png # Live Kibana attack map - Americas
 └── reports/
     └── attack_summary.md        # Generated threat intel report
 ```
@@ -161,6 +163,16 @@ Every attack session logged includes:
 
 ---
 
+## 🗺️ Live Attack Map (Kibana)
+
+> Real-time attacker origins visualized on Kibana Maps with GeoIP enrichment
+
+![Attack Map - Asia Pacific](diagrams/kibana-attack-map-asia.png)
+
+![Attack Map - Americas](diagrams/kibana-attack-map-americas.png)
+
+---
+
 ## 🚧 Build Progress
 
 - [x] Day 1 — Repo structure + README + architecture diagram
@@ -176,7 +188,7 @@ Every attack session logged includes:
 - [x] Day 9 — AWS CloudWatch Logs Insights (attack query dashboard)
 - [ ] Day 10 — Auto report generator
 - [ ] Day 11 — Real findings documented
-- [ ] Day 12 — Architecture diagram finalized
+- [x] Day 12 — Attack map screenshots added to repo
 - [ ] Day 13 — Full README polish
 - [ ] Day 14 — HackTrace article drafted
 - [ ] Day 15 — v1.0 release

@@ -9,11 +9,6 @@
 
 <br/>
 
-![Status](https://img.shields.io/badge/Status-Active-00C176?style=for-the-badge)
-![Cowrie](https://img.shields.io/badge/Cowrie-Honeypot-FF6B6B?style=for-the-badge)
-![Filebeat](https://img.shields.io/badge/Filebeat-8.17-005571?style=for-the-badge&logo=elastic&logoColor=white)
-![CloudWatch](https://img.shields.io/badge/AWS-CloudWatch-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
-
 </div>
 
 ---

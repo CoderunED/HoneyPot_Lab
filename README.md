@@ -12,8 +12,6 @@
 
 </div>
 
----
-
 ## 🍯 What Is This?
 
 A **cloud-deployed SSH/Telnet honeypot** running on AWS EC2 that captures real-world attack traffic from the internet. Using Cowrie — an industry-standard medium-interaction honeypot — this lab logs every login attempt, command executed, and file downloaded by attackers. Logs are shipped in real-time via Filebeat to Elastic SIEM for threat detection, and visualized on a live Kibana attack map showing attacker origins across 9 countries.

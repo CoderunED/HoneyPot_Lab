@@ -210,7 +210,6 @@ This honeypot is deployed on infrastructure I own and control. All captured data
 [<img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/main/large/filled/medium.svg" width="40" height="40">](https://medium.com/@ervindsouza08)
 [<img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/main/large/filled/youtube.svg" width="40" height="40">](https://www.youtube.com/@ervindsouza11)
 
-
 ---
 
 <div align="center">
